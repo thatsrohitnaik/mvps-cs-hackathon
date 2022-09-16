@@ -7,12 +7,16 @@ export default function Seat(props) {
   const gridSize = window.innerWidth > 600 ? 'col-2' : 'col-4';
   const [showSelectChair, setShowSelectChair] = useState(false);
 
-  const uponSeatClick = (seat) => {
-    const available = checkIfSeatIsAvailable();
+  const uponSeatClick = () => {
+    setShowSelectChair(false);
+    const available = checkIfSeatIsAvailable(status);
     if (!available) {
-      props.setAlertMessage(
-        'Seat already booked by ' + seat.allocatedTo + ' team'
-      );
+      props.showAlert({
+        message: 'Seat is already booked by ' + allocatedTo + ' team',
+        severity: 'info',
+      });
+    } else {
+      setShowSelectChair(true);
     }
   };
 
@@ -22,7 +26,12 @@ export default function Seat(props) {
 
   return (
     <div className={gridSize}>
-      <div className="chair-img-div" onClick="()=>{}">
+      <div
+        className="chair-img-div"
+        onClick={() => {
+          uponSeatClick();
+        }}
+      >
         {!showSelectChair && <img src={getChair(status)} className="img" />}
         {showSelectChair && <img src={getChair('S')} className="img" />}
       </div>

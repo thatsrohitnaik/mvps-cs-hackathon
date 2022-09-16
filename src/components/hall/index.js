@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import Seat from './seat/';
-import Alertf from '../alert/';
+import Alert from '../alert/';
 
 export default function Hall({ seats }) {
   const showAlert = (alert) => {
+    console.log(alert);
+    setAlertMessage(null);
     setAlertMessage(alert);
   };
-  const [alertMessage, setAlertMessage] = useState(null);
+  const [alert, setAlertMessage] = useState(null);
 
   return (
     <div>
-      <Alert message={alert.message} severity={alert.severity} />
-      {alertMessage != null && <p>{alertMessage}</p>}
+      {alert != null && (
+        <Alert message={alert.message} alert={alert.severity} />
+      )}
       <div className="row">
         {seats.map((seat) => {
           return <Seat key={seat.seatNo} seat={seat} showAlert={showAlert} />;
