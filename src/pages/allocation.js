@@ -4,7 +4,7 @@ import { seats } from '../mock-data/seats.js';
 
 export default function Allocation() {
   return (
-    <div>
+    <div className="container">
       <Hall seats={seats} />
     </div>
   );

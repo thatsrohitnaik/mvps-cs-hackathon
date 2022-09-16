@@ -4,7 +4,7 @@ import { getChair } from '../../../util/helper';
 
 export default function Seat(props) {
   const { seatNo, status, allocatedTo, amendRequestBy } = props.seat;
-  const gridSize = window.innerWidth > 600 ? 'col-2' : 'col-4';
+  const gridSize = window.innerWidth > 600 ? 'col-1 ' : 'col-3';
   const [showSelectChair, setShowSelectChair] = useState(false);
 
   const uponSeatClick = () => {
@@ -27,7 +27,7 @@ export default function Seat(props) {
   return (
     <div className={gridSize}>
       <div
-        className="chair-img-div"
+        className="chair-img-div "
         onClick={() => {
           uponSeatClick();
         }}
