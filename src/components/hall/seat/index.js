@@ -7,9 +7,17 @@ export default function Seat(props) {
   const gridSize = window.innerWidth > 600 ? 'col-2' : 'col-4';
   const [showSelectChair, setShowSelectChair] = useState(false);
 
-  const selectChairIfUserIsAllowedTo = () => {
+  const uponSeatClick = (seat) => {
+    const available = checkIfSeatIsAvailable();
+    if (!available) {
+      props.setAlertMessage(
+        'Seat already booked by ' + seat.allocatedTo + ' team'
+      );
+    }
+  };
 
-    
+  const checkIfSeatIsAvailable = (status) => {
+    return status == 'A';
   };
 
   return (

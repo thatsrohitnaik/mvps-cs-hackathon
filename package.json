@@ -3,8 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.0.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.5",
+    "@types/react": "^17.0.0 || ^18.0.0",
     "https:": "*",
-    "mdb-ui-kit": "5.0.0",
     "null": "2.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
