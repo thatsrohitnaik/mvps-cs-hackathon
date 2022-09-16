@@ -1,8 +1,8 @@
 export const urls = {
   chairs: {
-    available: 'https://img.icons8.com/color/48/000000/office-chair-2.png',
-    selected: 'https://img.icons8.com/color/48/000000/office-chair-2.png',
-    booked: 'https://img.icons8.com/color/48/000000/office-chair-2.png',
+    available: 'https://img.icons8.com/ios/100/000000/office-chair-2.png',
+    selected: 'https://img.icons8.com/fluency/96/000000/office-chair-2.png',
+    booked: 'https://img.icons8.com/ios-filled/100/000000/office-chair-2.png',
     amended: 'https://img.icons8.com/color/48/000000/office-chair-2.png',
   },
 };
@@ -25,6 +25,5 @@ export const getChair = (status) => {
     default:
       chair = urls.chairs.available;
   }
-  console.log(chair);
   return chair;
 };

@@ -1,0 +1,13 @@
+.img {
+  width: 100px;
+  height: 100px;
+}
+
+.chair-img-div {
+  margin: auto;
+  width: 100px;
+}
+
+.chair-seatno-p {
+  text-align: center;
+}
