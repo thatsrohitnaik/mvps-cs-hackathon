@@ -55,7 +55,7 @@ export default function BuildingForm({ uponSeatAllocationData }) {
   splitBuildingData();
 
   const getSpaceAllocationData = () => {
-    console.log('calling');
+    console.log('calling', floor, wing, date);
     axios
       .get(
         'https://raw.githubusercontent.com/thatsrohitnaik/mvps-cs-hackathon/main/public/seats.json'
@@ -68,10 +68,14 @@ export default function BuildingForm({ uponSeatAllocationData }) {
       });
   };
 
+  const isDisabled = () => {
+    return value?.length > 0 && wing?.length > 0 && date != null;
+  };
+
   return (
     <div className="row">
       <div className={gridSize}>
-        <div>
+        <div className="date">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             {!isMobile && (
               <DesktopDatePicker
@@ -144,6 +148,7 @@ export default function BuildingForm({ uponSeatAllocationData }) {
             getSpaceAllocationData();
           }}
           variant="contained"
+          disabled={!isDisabled()}
         >
           Submit
         </Button>
