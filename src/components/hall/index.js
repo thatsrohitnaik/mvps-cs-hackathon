@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Seat from './seat/';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
-import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close';
+import Snackbar from '@mui/material/Snackbar';
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function Hall({ seats }) {
@@ -15,36 +16,60 @@ export default function Hall({ seats }) {
     setAlertMessage(alert);
   };
 
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}>
+        UNDO
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
   return (
-    <div>
+    <>
       {alert != null && (
-        <Collapse in={open}>
+        <Snackbar
+          open={open}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          action={action}
+        >
           <Alert
-            variant="filled"
+            onClose={handleClose}
             severity={alert.severity}
-            action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={() => {
-                  setOpen(false);
-                }}
-              >
-                <CloseIcon fontSize="inherit" />
-              </IconButton>
-            }
-            sx={{ mb: 2 }}
+            sx={{ width: '100%' }}
           >
             {alert.message}
           </Alert>
-        </Collapse>
+        </Snackbar>
       )}
-      <div className="row">
-        {seats.map((seat) => {
-          return <Seat key={seat.seatNo} seat={seat} showAlert={showAlert} />;
-        })}
+      <div>
+        <div className="row">
+          {seats.map((seat) => {
+            return <Seat key={seat.seatNo} seat={seat} showAlert={showAlert} />;
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

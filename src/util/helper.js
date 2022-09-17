@@ -1,8 +1,8 @@
 export const urls = {
   chairs: {
-    available: 'https://img.icons8.com/ios/100/000000/office-chair-2.png',
-    selected: 'https://img.icons8.com/fluency/96/000000/office-chair-2.png',
-    booked: 'https://img.icons8.com/ios-filled/100/000000/office-chair-2.png',
+    available: 'https://cdn-icons-png.flaticon.com/512/1723/1723651.png',
+    selected: 'https://cdn-icons-png.flaticon.com/512/1723/1723655.png',
+    booked: 'https://cdn-icons-png.flaticon.com/512/1723/1723596.png',
     amended: 'https://img.icons8.com/color/48/000000/office-chair-2.png',
   },
 };

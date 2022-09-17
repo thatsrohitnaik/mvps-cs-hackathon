@@ -8,7 +8,10 @@ export default function Seat(props) {
   const [showSelectChair, setShowSelectChair] = useState(false);
 
   const uponSeatClick = () => {
-    setShowSelectChair(false);
+    if (showSelectChair) {
+      setShowSelectChair(false);
+      return null;
+    }
     const available = checkIfSeatIsAvailable(status);
     if (!available) {
       props.showAlert({
