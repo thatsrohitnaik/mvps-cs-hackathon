@@ -8,7 +8,7 @@ export default function Allocation() {
   const [seats, setSeats] = React.useState(null);
   const uponSeatAllocationData = (res) => {
     const data = JSON.parse(res.data);
-    console.log('data', data);
+    console.log('oyeeeeeeee', data);
     setSeats(data);
   };
 

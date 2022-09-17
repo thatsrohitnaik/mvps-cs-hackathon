@@ -14,9 +14,9 @@ import axios from 'axios';
 let floor = [];
 
 export default function BuildingForm({ uponSeatAllocationData }) {
-  const [value, setFloorValue] = React.useState(null);
+  const [value, setFloorValue] = React.useState('');
   const [wing, setWingValue] = React.useState(null);
-  const [wingOption, setWingOption] = React.useState(null);
+  const [wingOption, setWingOption] = React.useState('');
   const [date, setDate] = React.useState(dayjs());
 
   const handleChange = (newValue) => {
@@ -55,12 +55,16 @@ export default function BuildingForm({ uponSeatAllocationData }) {
 
   const getSpaceAllocationData = () => {
     console.log('calling');
-    return axios
+    axios
       .get(
         'https://raw.githubusercontent.com/thatsrohitnaik/mvps-cs-hackathon/main/public/seats.json'
       )
       .then((res) => {
+        console.log('okoko', JSON.parse(res.data));
         uponSeatAllocationData(res);
+      })
+      .catch((e) => {
+        console.log(e);
       });
   };
 
