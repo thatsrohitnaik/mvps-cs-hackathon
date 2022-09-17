@@ -5,6 +5,7 @@
   "floor": "4",
   "wing": "A",
   "wingCapacity": "35",
+  "availableSeats": "2",
   "seats": [
     {
       "seatNo": "4-A-1",
