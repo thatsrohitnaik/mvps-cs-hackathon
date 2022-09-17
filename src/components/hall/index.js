@@ -66,9 +66,12 @@ export default function Hall({ seats }) {
       )}
       <div>
         <div className="row">
-          {seats.map((seat) => {
-            return <Seat key={seat.seatNo} seat={seat} showAlert={showAlert} />;
-          })}
+          {seats != null &&
+            seats.map((seat) => {
+              return (
+                <Seat key={seat.seatNo} seat={seat} showAlert={showAlert} />
+              );
+            })}
         </div>
       </div>
     </>

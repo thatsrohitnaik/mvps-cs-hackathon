@@ -9,10 +9,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import axios from 'axios';
 
 let floor = [];
 
-export default function BuildingForm() {
+export default function BuildingForm({ uponSeatAllocationData }) {
   const [value, setFloorValue] = React.useState(null);
   const [wing, setWingValue] = React.useState(null);
   const [wingOption, setWingOption] = React.useState(null);
@@ -51,6 +52,18 @@ export default function BuildingForm() {
   };
 
   splitBuildingData();
+
+  const getSpaceAllocationData = () => {
+    return axios
+      .get(
+        'https://raw.githubusercontent.com/thatsrohitnaik/mvps-cs-hackathon/main/public/db.json'
+      )
+      .then((res) => {
+        uponSeatAllocationData(res);
+      });
+  };
+
+  getSpaceAllocationData();
 
   return (
     <div className="row">
