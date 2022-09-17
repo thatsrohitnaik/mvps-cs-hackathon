@@ -1,80 +1,26 @@
-import React, { useState } from 'react';
-import Seat from './seat/';
-import Alert from '@mui/material/Alert';
-import IconButton from '@mui/material/IconButton';
-import Button from '@mui/material/Button';
-import CloseIcon from '@mui/icons-material/Close';
-import Snackbar from '@mui/material/Snackbar';
-import CloseIcon from '@mui/icons-material/Close';
+import React from 'react';
+import Seat from './Seat/';
+import { StoreContext } from '../../context/index';
 
-export default function Hall({ seats, user }) {
-  const [alert, setAlertMessage] = useState(null);
-  const [open, setOpen] = React.useState(true);
+export default function Hall({ floor, zone, user }) {
+    const { store } = React.useContext(StoreContext);
+    const [seatData, setSeatData] = React.useState([]);
+    React.useEffect(() => {
+        abc();
+    }, [])
 
-  const showAlert = (alert) => {
-    setOpen(true);
-    setAlertMessage(alert);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
+    const abc = async () => {
+        const a = await store.getSpaceAllocationData();
+        setSeatData(a);
+    };
+    if (seatData.length == 0) {
+        return null;
     }
-
-    setOpen(false);
-  };
-
-  const action = (
-    <React.Fragment>
-      <Button color="secondary" size="small" onClick={handleClose}>
-        UNDO
-      </Button>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={handleClose}
-      >
-        <CloseIcon fontSize="small" />
-      </IconButton>
-    </React.Fragment>
-  );
-
-  return (
-    <>
-      {alert != null && (
-        <Snackbar
-          open={open}
-          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-          autoHideDuration={6000}
-          onClose={handleClose}
-          action={action}
-        >
-          <Alert
-            variant="filled"
-            onClose={handleClose}
-            severity={alert.severity}
-            sx={{ width: '100%' }}
-          >
-            {alert.message}
-          </Alert>
-        </Snackbar>
-      )}
-      <div>
-        <div className="row">
-          {seats?.length &&
-            seats.map((seat) => {
-              return (
-                <Seat
-                  user={user}
-                  key={seat.seatNo}
-                  seat={seat}
-                  showAlert={showAlert}
-                />
-              );
+    return (
+        <div className='row'>
+            {seatData.seats.map((i) => {
+                console.log(i,"lll")
+                return <Seat key={i.seatNo} data={i} floor={floor} zone={zone} user={user}/>
             })}
-        </div>
-      </div>
-    </>
-  );
+        </div>)
 }

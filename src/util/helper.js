@@ -1,11 +1,11 @@
 export const urls = {
   chairs: {
-    available: 'https://cdn-icons-png.flaticon.com/512/1723/1723651.png',
-    selected: 'https://cdn-icons-png.flaticon.com/512/1723/1723655.png',
-    booked: 'https://cdn-icons-png.flaticon.com/512/1723/1723596.png',
+    available: 'https://img.icons8.com/cotton/64/000000/accent-chair--v1.png',
+    selected: 'https://img.icons8.com/cotton/64/000000/accent-chair--v2.png',
+    booked: 'https://img.icons8.com/cotton/64/000000/lawson-chair--v2.png',
     amended: 'https://img.icons8.com/color/48/000000/office-chair-2.png',
-    allotedToYourTeam:
-      'https://img.icons8.com/color/48/000000/office-chair-2.png',
+    disabled: 'https://img.icons8.com/pastel-glyph/64/000000/accent-chair--v1.png',
+    allotedToYourTeam: 'http://localhost:3000/res/selected.png',
   },
 };
 

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './style.css';
 import { getChair } from '../../../util/helper';
 
-export default function Seat({ seat, user }) {
-  const { seatNo, status, allocatedTo, amendRequestBy } = seat;
+export default function Seat({ data, user }) {
+  const { seatNo, status, allocatedTo, amendRequestBy } = data;
   const gridSize = window.innerWidth > 600 ? 'col-1 ' : 'col-3';
   const [showSelectChair, setShowSelectChair] = useState(false);
 

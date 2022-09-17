@@ -4,3 +4,11 @@ p {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 @import '~mdb-ui-kit/css/mdb.min.css';
+
+.textCenter{
+  text-align: center;
+}
+
+#vertical-tabpanel-0 .MuiBox-root{
+  padding-top: 0px !important;
+}

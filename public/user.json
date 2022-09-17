@@ -1,8 +1,28 @@
 {
   "type": "manager",
+  "buildingAccess":[{
+    "floor":"L4",
+    "zone":["A","B"]
+  },
+  {
+    "floor":"L5",
+    "zone":["A","B","C"]
+  }],
   "team": {
     "name": "iCredit",
-    "strength": 30,
-    "quota": 18
+    "strength": 10,
+    "quota": 6,
+    "members":[
+      {"name":"Rohit", "code":"M100101"},
+      {"name":"Chanchal", "code":"M100102"},
+      {"name":"Shashi", "code":"M100103"},
+      {"name":"Setia", "code":"M100104"},
+      {"name":"Vaishanvi", "code":"M100105"},
+      {"name":"Praveen", "code":"M100106"},
+      {"name":"Srinidhi", "code":"M100107"},
+      {"name":"Kushal", "code":"M100108"},
+      {"name":"Malini", "code":"M100109"},
+      {"name":"Sai", "code":"M100110"}
+    ]
   }
 }

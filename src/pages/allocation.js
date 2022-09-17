@@ -26,11 +26,11 @@ export default function Allocation() {
     <Box sx={{ flexGrow: 1 }}>
       <Nav />
       <br />
-      <div className="container">
+      {/* <div className="container">
         <BuildingForm uponSeatAllocationData={uponSeatAllocationData} />
         <br />
         {seats && <Hall seats={seats} user={user} />}
-      </div>
+      </div> */}
     </Box>
   );
 }
