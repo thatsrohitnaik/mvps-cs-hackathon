@@ -7,7 +7,7 @@ import BuildingForm from '../components/building-form';
 export default function Allocation() {
   const [seats, setSeats] = React.useState(null);
   const uponSeatAllocationData = (data) => {
-    setSeats(data);
+    setSeats(data.seats);
   };
 
   return (
