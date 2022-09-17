@@ -26,6 +26,7 @@ export default function Seat(props) {
   const checkIfSeatIsAvailable = (status) => {
     return status == 'A';
   };
+  console.log('ia m called');
 
   return (
     <div className={gridSize}>

@@ -7,7 +7,9 @@ import BuildingForm from '../components/building-form';
 export default function Allocation() {
   const [seats, setSeats] = React.useState(null);
   const uponSeatAllocationData = (res) => {
-    setSeats(JSON.parse(res.data));
+    const data = JSON.parse(res.data);
+    console.log('data', data);
+    setSeats(data);
   };
 
   return (
@@ -17,7 +19,8 @@ export default function Allocation() {
       <div className="container">
         <BuildingForm uponSeatAllocationData={uponSeatAllocationData} />
         <br />
-        <Hall seats={seats} />
+        {seats?.length}
+        {seats && <Hall seats={seats} />}
       </div>
     </Box>
   );
