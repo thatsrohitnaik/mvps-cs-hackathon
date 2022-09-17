@@ -49,12 +49,13 @@ export default function Hall({ seats }) {
       {alert != null && (
         <Snackbar
           open={open}
-          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
           autoHideDuration={6000}
           onClose={handleClose}
           action={action}
         >
           <Alert
+            variant="filled"
             onClose={handleClose}
             severity={alert.severity}
             sx={{ width: '100%' }}

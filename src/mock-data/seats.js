@@ -127,7 +127,7 @@ export const seats = [
   },
   {
     office: 'PN-E2',
-    seatNo: '4-A-10',
+    seatNo: '4-A-19',
     status: 'B',
     allocatedTo: 'iCredit',
     amendRequestBy: null,

@@ -16,7 +16,7 @@ export default function Seat(props) {
     if (!available) {
       props.showAlert({
         message: 'Seat is already booked by ' + allocatedTo,
-        severity: 'info',
+        severity: 'error',
       });
     } else {
       setShowSelectChair(true);

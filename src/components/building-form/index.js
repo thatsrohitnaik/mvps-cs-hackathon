@@ -3,11 +3,16 @@ import { building } from '../../mock-data/building';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-let floor = ['a', 'b'];
+let floor = [];
 
 export default function BuildingForm() {
-  const [value, setFloorValue] = React.useState(floor[0]);
+  const [value, setFloorValue] = React.useState(null);
+  const [wing, setWingValue] = React.useState(null);
+  const [wingOption, setWingOption] = React.useState(null);
+
   const [inputFloorValue, setinputFloorValue] = React.useState('');
+  const [inputWingValue, setinputWingValue] = React.useState('');
+
   const gridSize = window.innerWidth > 600 ? 'col-3' : 'col-12';
 
   const splitBuildingData = () => {
@@ -15,8 +20,23 @@ export default function BuildingForm() {
       return b.floor;
     });
     floor = a;
-    console.log(floor);
   };
+
+  const onWingChange = (floor) => {
+    let a = null;
+    building.map((b) => {
+      if (b.floor == floor) {
+        a = b.wing;
+      }
+    });
+    console.log(a);
+    let b = [];
+    a.map((a) => {
+      b.push(a.name);
+    });
+    setWingOption(b);
+  };
+
   splitBuildingData();
 
   return (
@@ -25,6 +45,7 @@ export default function BuildingForm() {
         <Autocomplete
           value={value}
           onChange={(event, newValue) => {
+            onWingChange(newValue);
             setFloorValue(newValue);
           }}
           inputFloorValue={inputFloorValue}
@@ -40,15 +61,15 @@ export default function BuildingForm() {
       </div>
       <div className={gridSize}>
         <Autocomplete
-          value={value}
+          value={wing}
           onChange={(event, newValue) => {
-            setFloorValue(newValue);
+            setWingValue(newValue);
           }}
-          inputFloorValue={inputFloorValue}
-          onInputChange={(event, newinputFloorValue) => {
-            setinputFloorValue(newinputFloorValue);
+          inputFloorValue={inputWingValue}
+          onInputChange={(event, newinputWingValue) => {
+            setinputWingValue(newinputWingValue);
           }}
-          options={floor}
+          options={wingOption}
           sx={{ width: 300 }}
           renderInput={(params) => <TextField {...params} label="Wing" />}
         />
