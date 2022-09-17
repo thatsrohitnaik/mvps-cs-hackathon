@@ -98,7 +98,7 @@ export default function BuildingForm({ uponSeatAllocationData, user }) {
         <br />
       </div>
       <div className={gridSize}>
-        <Autocomplete
+        {/* <Autocomplete
           value={value}
           onChange={(event, newValue) => {
             onWingChange(newValue);
@@ -112,7 +112,7 @@ export default function BuildingForm({ uponSeatAllocationData, user }) {
           options={floor}
           sx={{ width: 300 }}
           renderInput={(params) => <TextField {...params} label="Floor" />}
-        />
+        /> */}
         <br />
       </div>
       <div className={gridSize}>
