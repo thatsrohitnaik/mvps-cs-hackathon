@@ -1,7 +1,6 @@
 import React from 'react';
 import { building } from '../../mock-data/building';
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -14,24 +13,26 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 
-let floor = [];
-
 export default function BuildingForm({ uponSeatAllocationData, user }) {
-  const [value, setFloorValue] = React.useState(null);
+  const [floor, setFloorValue] = React.useState(null);
   const [wing, setWingValue] = React.useState(null);
-  const [wingOption, setWingOption] = React.useState(null);
   const [date, setDate] = React.useState(dayjs());
 
-  const handleChange2 = (event) => {
-    setAge(event.target.value);
+  const [floorOption, setFloorOption] = React.useState(null);
+  const [wingOption, setWingOption] = React.useState(null);
+
+  const onWingValueChange = (event) => {
+    setWingValue(event.target.value);
+  };
+
+  const onFloorChange = (event) => {
+    setFloorValue(event.target.value);
+    onWingChange(event.target.value);
   };
 
   const handleChange = (newValue) => {
     setDate(newValue);
   };
-
-  const [inputFloorValue, setinputFloorValue] = React.useState('');
-  const [inputWingValue, setinputWingValue] = React.useState('');
 
   const isMobile = window.innerWidth < 600;
   const gridSize = isMobile ? 'col-12' : 'col-3';
@@ -40,7 +41,7 @@ export default function BuildingForm({ uponSeatAllocationData, user }) {
     const a = building.map((b) => {
       return b.floor;
     });
-    floor = a;
+    setFloorOption(a);
   };
 
   const onWingChange = (floor) => {
@@ -64,11 +65,11 @@ export default function BuildingForm({ uponSeatAllocationData, user }) {
     uponSeatAllocationData(floor, wing, date);
   };
 
-  // const makeCall = () => {
-  //   if (!(value?.length > 0 && wing?.length > 0 && date != null)) {
-  //     getSpaceAllocationData();
-  //   }
-  // };
+  const makeCall = () => {
+    if (!(value?.length > 0 && wing?.length > 0 && date != null)) {
+      getSpaceAllocationData();
+    }
+  };
 
   return (
     <div className="row">
@@ -98,21 +99,21 @@ export default function BuildingForm({ uponSeatAllocationData, user }) {
         <br />
       </div>
       <div className={gridSize}>
-        {/* <Autocomplete
-          value={value}
-          onChange={(event, newValue) => {
-            onWingChange(newValue);
-            setFloorValue(newValue);
-          }}
-          inputFloorValue={inputFloorValue}
-          onInputChange={(event, newinputFloorValue) => {
-            setinputFloorValue(newinputFloorValue);
-          }}
-          id="controllable-states-demo"
-          options={floor}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Floor" />}
-        /> */}
+        <FormControl fullWidth>
+          <InputLabel id="floor">Floor</InputLabel>
+          <Select
+            labelId="Floor"
+            id="demo-simple-select"
+            value={wing}
+            label="Floor"
+            onChange={onFloorChange}
+          >
+            {wingOption != null &&
+              wingOption.map((wing) => {
+                return <MenuItem value={wing}>{wing}</MenuItem>;
+              })}
+          </Select>
+        </FormControl>
         <br />
       </div>
       <div className={gridSize}>
@@ -123,7 +124,7 @@ export default function BuildingForm({ uponSeatAllocationData, user }) {
             id="demo-simple-select"
             value={wing}
             label="Zone"
-            onChange={handleChange2}
+            onChange={onWingValueChange}
           >
             {wingOption != null &&
               wingOption.map((wing) => {
