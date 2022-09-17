@@ -15,7 +15,7 @@ export default function Seat(props) {
     const available = checkIfSeatIsAvailable(status);
     if (!available) {
       props.showAlert({
-        message: 'Seat is already booked by ' + allocatedTo + ' team',
+        message: 'Seat is already booked by ' + allocatedTo,
         severity: 'info',
       });
     } else {

@@ -1,6 +1,6 @@
 export const building = [
   {
-    floor: 1,
+    floor: '1',
     wing: [
       {
         name: 'A',
@@ -21,7 +21,7 @@ export const building = [
     ],
   },
   {
-    floor: 2,
+    floor: '2',
     wing: [
       {
         name: 'A',
