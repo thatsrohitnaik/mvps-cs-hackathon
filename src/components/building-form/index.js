@@ -129,7 +129,7 @@ export default function BuildingForm({ uponSeatAllocationData }) {
           }}
           options={wingOption}
           sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Wing" />}
+          renderInput={(params) => <TextField {...params} label="Zone" />}
         />
         <br />
       </div>
