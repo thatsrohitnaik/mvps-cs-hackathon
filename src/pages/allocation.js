@@ -7,15 +7,17 @@ import { StoreContext } from '../context/';
 
 export default function Allocation() {
   const [seats, setSeats] = React.useState(null);
+  const [user, setUser] = React.useState(null);
+
   const uponSeatAllocationData = async (floor, wing, date) => {
     const data = await store.getSpaceAllocationData(floor, wing, date);
-    console.log(data, 'hero');
     setSeats(data.seats);
   };
   const { store } = React.useContext(StoreContext);
 
   const abc = async () => {
     const user = await store.getProfile();
+    setUser(user);
   };
 
   abc();
@@ -27,7 +29,7 @@ export default function Allocation() {
       <div className="container">
         <BuildingForm uponSeatAllocationData={uponSeatAllocationData} />
         <br />
-        {seats && <Hall seats={seats} />}
+        {seats && <Hall seats={seats} user={user} />}
       </div>
     </Box>
   );

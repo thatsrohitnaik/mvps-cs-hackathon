@@ -7,17 +7,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import Snackbar from '@mui/material/Snackbar';
 import CloseIcon from '@mui/icons-material/Close';
 
-export default function Hall({ seats }) {
+export default function Hall({ seats, user }) {
   const [alert, setAlertMessage] = useState(null);
   const [open, setOpen] = React.useState(true);
 
   const showAlert = (alert) => {
     setOpen(true);
     setAlertMessage(alert);
-  };
-
-  const handleClick = () => {
-    setOpen(true);
   };
 
   const handleClose = (event, reason) => {
@@ -69,7 +65,12 @@ export default function Hall({ seats }) {
           {seats?.length &&
             seats.map((seat) => {
               return (
-                <Seat key={seat.seatNo} seat={seat} showAlert={showAlert} />
+                <Seat
+                  user={user}
+                  key={seat.seatNo}
+                  seat={seat}
+                  showAlert={showAlert}
+                />
               );
             })}
         </div>

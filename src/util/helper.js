@@ -4,17 +4,23 @@ export const urls = {
     selected: 'https://cdn-icons-png.flaticon.com/512/1723/1723655.png',
     booked: 'https://cdn-icons-png.flaticon.com/512/1723/1723596.png',
     amended: 'https://img.icons8.com/color/48/000000/office-chair-2.png',
+    allotedToYourTeam:
+      'https://img.icons8.com/color/48/000000/office-chair-2.png',
   },
 };
 
-export const getChair = (status) => {
+export const getChair = (status, a, b) => {
   let chair = null;
   switch (status) {
     case 'A':
       chair = urls.chairs.available;
       break;
     case 'B':
-      chair = urls.chairs.booked;
+      if (a == b) {
+        chair = urls.chairs.allotedToYourTeam;
+      } else {
+        chair = urls.chairs.booked;
+      }
       break;
     case 'S':
       chair = urls.chairs.selected;

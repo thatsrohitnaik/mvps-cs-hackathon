@@ -14,7 +14,7 @@ import axios from 'axios';
 
 let floor = [];
 
-export default function BuildingForm({ uponSeatAllocationData }) {
+export default function BuildingForm({ uponSeatAllocationData, user }) {
   const [value, setFloorValue] = React.useState('');
   const [wing, setWingValue] = React.useState(null);
   const [wingOption, setWingOption] = React.useState('');
@@ -58,8 +58,10 @@ export default function BuildingForm({ uponSeatAllocationData }) {
     uponSeatAllocationData(floor, wing, date);
   };
 
-  const isDisabled = () => {
-    return value?.length > 0 && wing?.length > 0 && date != null;
+  const makeCall = () => {
+    if (!(value?.length > 0 && wing?.length > 0 && date != null)) {
+      getSpaceAllocationData();
+    }
   };
 
   return (
@@ -95,6 +97,7 @@ export default function BuildingForm({ uponSeatAllocationData }) {
           onChange={(event, newValue) => {
             onWingChange(newValue);
             setFloorValue(newValue);
+            makeCall();
           }}
           inputFloorValue={inputFloorValue}
           onInputChange={(event, newinputFloorValue) => {
@@ -112,6 +115,7 @@ export default function BuildingForm({ uponSeatAllocationData }) {
           value={wing}
           onChange={(event, newValue) => {
             setWingValue(newValue);
+            makeCall();
           }}
           inputFloorValue={inputWingValue}
           onInputChange={(event, newinputWingValue) => {
@@ -122,26 +126,6 @@ export default function BuildingForm({ uponSeatAllocationData }) {
           renderInput={(params) => <TextField {...params} label="Zone" />}
         />
         <br />
-      </div>
-      <div className={gridSize}>
-        <Typography variant="h6" component="h6">
-          Availiable 20/35
-        </Typography>
-        <Typography variant="h6" component="h6">
-          Selected 1/12
-        </Typography>
-      </div>
-
-      <div className="col-12">
-        <Button
-          onClick={() => {
-            getSpaceAllocationData();
-          }}
-          variant="contained"
-          disabled={!isDisabled()}
-        >
-          Submit
-        </Button>
       </div>
     </div>
   );

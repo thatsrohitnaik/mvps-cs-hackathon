@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './style.css';
 import { getChair } from '../../../util/helper';
 
-export default function Seat(props) {
-  const { seatNo, status, allocatedTo, amendRequestBy } = props.seat;
+export default function Seat({ seat, user }) {
+  const { seatNo, status, allocatedTo, amendRequestBy } = seat;
   const gridSize = window.innerWidth > 600 ? 'col-1 ' : 'col-3';
   const [showSelectChair, setShowSelectChair] = useState(false);
 
@@ -35,7 +35,12 @@ export default function Seat(props) {
           uponSeatClick();
         }}
       >
-        {!showSelectChair && <img src={getChair(status)} className="img" />}
+        {!showSelectChair && (
+          <img
+            src={getChair(status, allocatedTo, user?.team?.name)}
+            className="img"
+          />
+        )}
         {showSelectChair && <img src={getChair('S')} className="img" />}
       </div>
       <p className="chair-seatno-p">{seatNo}</p>
