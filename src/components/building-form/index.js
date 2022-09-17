@@ -56,7 +56,7 @@ export default function BuildingForm({ uponSeatAllocationData }) {
   const getSpaceAllocationData = () => {
     return axios
       .get(
-        'https://raw.githubusercontent.com/thatsrohitnaik/mvps-cs-hackathon/main/public/db.json'
+        'https://raw.githubusercontent.com/thatsrohitnaik/mvps-cs-hackathon/main/public/seats.json'
       )
       .then((res) => {
         uponSeatAllocationData(res);
