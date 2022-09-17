@@ -2,6 +2,9 @@
   "date": "17-09-2022",
   "office": "PN-E2",
   "requestedTeam": "iCredit",
+  "floor": "4",
+  "wing": "A",
+  "wingCapacity": "35",
   "seats": [
     {
       "seatNo": "4-A-1",
