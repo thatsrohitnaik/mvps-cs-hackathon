@@ -7,11 +7,18 @@ import { StoreContext } from '../context/';
 
 export default function Allocation() {
   const [seats, setSeats] = React.useState(null);
-  const uponSeatAllocationData = (data) => {
+  const uponSeatAllocationData = async (floor, wing, date) => {
+    const data = await store.getSpaceAllocationData(floor, wing, date);
+    console.log(data, 'hero');
     setSeats(data.seats);
   };
   const { store } = React.useContext(StoreContext);
-  console.log(store.loading, 'loading');
+
+  const abc = async () => {
+    const user = await store.getProfile();
+  };
+
+  abc();
 
   return (
     <Box sx={{ flexGrow: 1 }}>

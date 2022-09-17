@@ -55,17 +55,7 @@ export default function BuildingForm({ uponSeatAllocationData }) {
   splitBuildingData();
 
   const getSpaceAllocationData = () => {
-    console.log('calling', floor, wing, date);
-    axios
-      .get(
-        'https://raw.githubusercontent.com/thatsrohitnaik/mvps-cs-hackathon/main/public/seats.json'
-      )
-      .then((res) => {
-        uponSeatAllocationData(res.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    uponSeatAllocationData(floor, wing, date);
   };
 
   const isDisabled = () => {

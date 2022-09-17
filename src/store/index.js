@@ -1,21 +1,30 @@
 import { makeAutoObservable } from 'mobx';
-import { axios } from 'axios';
+import { get } from '../util/rest';
+import { api } from '../util/api';
 
 class Store {
   loading = false;
-  profile = { info: Object, posts: Object };
-  continents = {};
-  countries = {};
+  user = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   getProfile = async () => {
-    const response = await axios.get('db.json');
-    this.profile = response.data.profile;
-    this.loading = true;
-    console.log(this.loading);
+    const response = await get(api.getProfile);
+    this.user = response.data;
+    return this.user;
+  };
+
+  getBuildingPlan = async () => {
+    const response = await get(api.getProfile);
+    this.user = response.data;
+    return this.user;
+  };
+
+  getSpaceAllocationData = async () => {
+    const response = await get(api.getWingAllocation);
+    return response.data;
   };
 }
 
