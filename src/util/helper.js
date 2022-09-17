@@ -1,3 +1,4 @@
+import axios from 'axios';
 export const urls = {
   chairs: {
     available: 'https://cdn-icons-png.flaticon.com/512/1723/1723651.png',
@@ -26,4 +27,8 @@ export const getChair = (status) => {
       chair = urls.chairs.available;
   }
   return chair;
+};
+
+export const getSpaceAllocationData = ({ date, floor, wing, requestedBy }) => {
+  return axios.get('http://webcode.me');
 };

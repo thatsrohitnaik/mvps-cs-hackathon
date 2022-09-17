@@ -2,6 +2,13 @@ import React from 'react';
 import { building } from '../../mock-data/building';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import Typography from '@mui/material/Typography';
+import dayjs from 'dayjs';
+import TextField from '@mui/material/TextField';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 
 let floor = [];
 
@@ -9,11 +16,17 @@ export default function BuildingForm() {
   const [value, setFloorValue] = React.useState(null);
   const [wing, setWingValue] = React.useState(null);
   const [wingOption, setWingOption] = React.useState(null);
+  const [date, setDate] = React.useState(dayjs());
+
+  const handleChange = (newValue) => {
+    setDate(newValue);
+  };
 
   const [inputFloorValue, setinputFloorValue] = React.useState('');
   const [inputWingValue, setinputWingValue] = React.useState('');
 
-  const gridSize = window.innerWidth > 600 ? 'col-3' : 'col-12';
+  const isMobile = window.innerWidth < 600;
+  const gridSize = isMobile ? 'col-12' : 'col-3';
 
   const splitBuildingData = () => {
     const a = building.map((b) => {
@@ -41,6 +54,31 @@ export default function BuildingForm() {
 
   return (
     <div className="row">
+      <div className={gridSize}>
+        <div>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            {!isMobile && (
+              <DesktopDatePicker
+                label="Date"
+                inputFormat="MM/DD/YYYY"
+                value={date}
+                onChange={handleChange}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            )}
+            {isMobile && (
+              <MobileDatePicker
+                label="Date"
+                inputFormat="MM/DD/YYYY"
+                value={date}
+                onChange={handleChange}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            )}
+          </LocalizationProvider>
+        </div>
+        <br />
+      </div>
       <div className={gridSize}>
         <Autocomplete
           value={value}
@@ -74,6 +112,14 @@ export default function BuildingForm() {
           renderInput={(params) => <TextField {...params} label="Wing" />}
         />
         <br />
+      </div>
+      <div className={gridSize}>
+        <Typography variant="h6" component="h6">
+          Availiable 20/35
+        </Typography>
+        <Typography variant="h6" component="h6">
+          Selected 1/12
+        </Typography>
       </div>
     </div>
   );
