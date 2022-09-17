@@ -68,8 +68,6 @@ export default function BuildingForm({ uponSeatAllocationData }) {
       });
   };
 
-  getSpaceAllocationData();
-
   return (
     <div className="row">
       <div className={gridSize}>
