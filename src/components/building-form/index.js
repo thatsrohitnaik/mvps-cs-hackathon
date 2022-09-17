@@ -9,6 +9,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import Button from '@mui/material/Button';
 import axios from 'axios';
 
 let floor = [];
@@ -60,8 +61,7 @@ export default function BuildingForm({ uponSeatAllocationData }) {
         'https://raw.githubusercontent.com/thatsrohitnaik/mvps-cs-hackathon/main/public/seats.json'
       )
       .then((res) => {
-        console.log('okoko', JSON.parse(res.data));
-        uponSeatAllocationData(res);
+        uponSeatAllocationData(res.data);
       })
       .catch((e) => {
         console.log(e);
@@ -136,6 +136,17 @@ export default function BuildingForm({ uponSeatAllocationData }) {
         <Typography variant="h6" component="h6">
           Selected 1/12
         </Typography>
+      </div>
+
+      <div className="col-12">
+        <Button
+          onClick={() => {
+            getSpaceAllocationData();
+          }}
+          variant="contained"
+        >
+          Submit
+        </Button>
       </div>
     </div>
   );
