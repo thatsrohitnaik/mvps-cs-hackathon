@@ -11,7 +11,7 @@
   "team": {
     "name": "iCredit",
     "strength": 10,
-    "quota": 5,
+    "quota": 6,
     "members":[
       {"name":"Rohit", "code":"M100101", "email": "xyz@cs.com", "team":"iCredit"},
       {"name":"Chanchal", "code":"M100102", "email": "xyz@cs.com", "team":"iCredit"},

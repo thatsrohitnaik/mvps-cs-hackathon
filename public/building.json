@@ -7,8 +7,8 @@
         "seats": [
           {
             "seatNo": "4-A-1",
-            "status": "B",
-            "allocatedTo":{"name":"Rohit", "code":"M100101", "email": "xyz@cs.com", "team":"iCredit"}
+            "status": "A",
+            "allocatedTo": null
           },
           {
             "seatNo": "4-A-2",

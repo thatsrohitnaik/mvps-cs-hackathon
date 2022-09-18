@@ -32,10 +32,10 @@ export default function Seat({ data, user, date, getAddToList, floor, zone, ende
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const [toBeAllocateList, settoBeAllocateList] = React.useState(user.team.members);
+    const [toBeAllocateList, settoBeAllocateList] = React.useState(user?.team?.members);
     const [addedToAllocationList, setaddedToAllocationList] = React.useState([]);
     const [to, setTo] = React.useState('');
-    const handleChange = (event) => { setTo(event.target.value);};
+    const handleChange = (event) => { setTo(event.target.value); addToList(seatNo, date, event.target.value); handleClose()};
     const hasTobeAlloted = toJS(store.hasTobeAlloted);
 
     const addToList = (seatNo, date, to) => {
@@ -52,7 +52,7 @@ export default function Seat({ data, user, date, getAddToList, floor, zone, ende
     const showAllocation = () => {
 
         return (<>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}> Allocated to {allocatedTo?.person} from {allocatedTo?.team} </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}> Allocated to {allocatedTo?.name} from {allocatedTo?.team} </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}> Contact email {allocatedTo?.email} </Typography>
             <br /> { allocatedTo?.team != user?.team?.name && <Button variant="contained">Request Reallocation</Button>}
         </>)
@@ -72,8 +72,6 @@ export default function Seat({ data, user, date, getAddToList, floor, zone, ende
                 </Select>
             </FormControl>
             <br />
-            <br />
-            <Button variant="contained" onClick={() => { addToList(seatNo, date, to); }}>Add</Button>
         </>)
     }
 

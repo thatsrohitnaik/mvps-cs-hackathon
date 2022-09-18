@@ -17,11 +17,7 @@ export const getChair = (status, a=null, b) => {
       chair = urls.chairs.available;
       break;
     case 'B':
-      if (a == b) {
-        chair = urls.chairs.allotedToYourTeam;
-      } else {
-        chair = urls.chairs.booked;
-      }
+      chair = urls.chairs.booked;
       break;
     case 'S':
       chair = urls.chairs.selected;

@@ -8,3 +8,15 @@ export async function get(url) {
     return null;
   }
 }
+
+
+export async function post(url, data) {
+  try {
+    const response = await axios.post(url, data);
+    debugger;
+    return response;
+  } catch (error) {
+    return null;
+  }
+}
+

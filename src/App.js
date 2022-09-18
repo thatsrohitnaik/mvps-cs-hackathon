@@ -60,6 +60,7 @@ export default function App(props) {
 
   const building = toJS(store.building);
 
+
   const handleChange = (newValue) => {
     setValue(newValue);
   };
@@ -176,10 +177,7 @@ export default function App(props) {
 
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Seat Allocation Tool
-
             </Typography>
-            <div className="abc">
-            </div>
           </Toolbar>
         </AppBar>
         <Box
@@ -221,7 +219,7 @@ export default function App(props) {
           <Toolbar />
           <Routes>
             <Route exact path="/" element={<MyHome />} />
-            <Route exact path="/allocation" element={<MyAllocation building={building} user={user} />} />
+            <Route exact path="/allocation" element={<MyAllocation building={toJS(store.building)} user={user} />} />
             <Route exact path="/approval" element={<MyApproval />} />
             <Route exact path="/quota" element={<MyQuota />} />
             <Route exact path="/team" element={<MyTeam />} />

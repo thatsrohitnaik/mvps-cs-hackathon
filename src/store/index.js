@@ -1,5 +1,5 @@
 import { makeAutoObservable, toJS } from "mobx";
-import { get } from "../util/rest";
+import { get, post } from "../util/rest";
 import { api } from "../util/api";
 
 class Store {
@@ -100,6 +100,24 @@ class Store {
     return abc;
   };
 
+  saveSeats = async () =>{
+    const edithedBulding = this.getBuilding().map((f) => {
+        f.wing.map((z) => {
+            z.seats.map((s) => {
+              if (s.status == 'S') {
+                s.status = 'B';
+              }
+              return s;
+            });
+          return z;
+        });
+      return f;
+    });
+    this.building = edithedBulding;
+      const response = await post(api.saveSeats, edithedBulding);
+      console.log(response.data, "ss");
+  }
+
   setSeat = (floor, zone, seatNo, status, to) => {
     const edithedBulding = this.getBuilding().map((f) => {
       if (f.floor == floor) {
@@ -128,18 +146,6 @@ class Store {
     this.hasTobeAlloted = b;
     debugger;
     this.building = edithedBulding;
-  };
-
-  getFloor = (floor) => {
-    return this.getBuilding().filter((f) => {
-      return f.floor == floor;
-    })[0];
-  };
-
-  getZone = (floor, zone) => {
-    return floor.filter((z) => {
-      return z.name == zone;
-    })[0];
   };
 }
 
