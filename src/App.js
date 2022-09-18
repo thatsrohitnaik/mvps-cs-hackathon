@@ -23,29 +23,46 @@ import MyTeam from './pages/myTeam';
 import MyRequest from './pages/myRequest';
 import MyHome from './pages/myHome';
 import Default from './pages/default';
-import {StoreContext} from './context/index';
+import { StoreContext } from './context/index';
+import dayjs from 'dayjs';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const drawerWidth = 240;
 
-export default function App(props) {
 
+export default function App(props) {
+  const [value, setValue] = React.useState(dayjs('2014-08-18T21:11:54'));
+  const [office, setOffice] = React.useState('PN-E2');
+
+  const handleChangeOffice = (event) => {
+    setOffice(event.target.value);
+  };
   React.useEffect(() => {
     abc()
-    },[]);
-    
-  const { window } = props;
+  }, []);
+  const isMobile = window.innerWidth > 600 ? true : false;
+
+  const { windowP } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [user, setUser] = React.useState(null);
-  const {store} = React.useContext(StoreContext);
+  const { store } = React.useContext(StoreContext);
 
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
   const abc = async () => {
     const user = await store.getProfile();
     setUser(user);
   };
-
-
-
-  console.log("ooooo",user);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -55,7 +72,47 @@ export default function App(props) {
     <div>
       <Toolbar ><p className="textCenter">Credit Suisse</p></Toolbar>
       <Divider />
+      <br />
       <List>
+        <ListItem>   <FormControl sx={{ m: 0, width: '100%' }} size="small">
+          <InputLabel id="demo-select-small">Office</InputLabel>
+          <Select
+            labelId="demo-select-small"
+            id="demo-select-small"
+            value={office}
+            label="office"
+            onChange={handleChangeOffice}
+          >
+            <MenuItem value="PN-E2">Pune Eon 2</MenuItem>
+            <MenuItem disabled value="PN-E1">Pune Eon 1</MenuItem>
+            <MenuItem disabled value="ZU-A1">Zuric A</MenuItem>
+          </Select>
+        </FormControl>  <br/><br/>   </ListItem>
+
+
+        <ListItem>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Stack spacing={0}>
+              {isMobile && <DesktopDatePicker
+                label="Select Date"
+                inputFormat="MM/DD/YYYY"
+                value={value}
+                sx={{ color: 'red' }}
+                onChange={handleChange}
+                renderInput={(params) => <TextField size="small" {...params} />}
+              />
+              }
+              {!isMobile && <MobileDatePicker
+                label="Select Date"
+                inputFormat="MM/DD/YYYY"
+                value={value}
+                onChange={handleChange}
+                renderInput={(params) => <TextField size="small" {...params} />}
+              />}
+            </Stack>
+          </LocalizationProvider>
+          <br />
+        </ListItem>
         {[{ header: 'My Team', path: "/team" }, { header: 'My Quota', path: "/quota" }, { header: 'My Allocation', path: "/allocation" }, { header: 'My Request', path: "/request" }, { header: 'My Approval', path: "/approval" }].map((text, index) => (
           <ListItem key={text.header} disablePadding>
             <ListItemButton>
@@ -63,7 +120,7 @@ export default function App(props) {
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
               <Link to={text.path}>
-              <ListItemText primary={text.header} />
+                <ListItemText primary={text.header} />
               </Link>
             </ListItemButton>
           </ListItem>
@@ -73,7 +130,7 @@ export default function App(props) {
     </div>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container = windowP !== undefined ? () => windowP().document.body : undefined;
 
   return (
     <BrowserRouter>
@@ -98,9 +155,13 @@ export default function App(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
-              SBT
+
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Seat Allocation Tool
+
             </Typography>
+            <div className="abc">
+            </div>
           </Toolbar>
         </AppBar>
         <Box

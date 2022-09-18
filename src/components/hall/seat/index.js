@@ -75,6 +75,8 @@ export default function Seat({ data, user, date, getAddToList }) {
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 Contact email {allocatedTo?.email}
             </Typography>
+            <br/>
+            {allocatedTo?.team != user?.team?.name && <Button variant="contained">Request Reallocation</Button>}
         </>)
     }
 
@@ -98,7 +100,8 @@ export default function Seat({ data, user, date, getAddToList }) {
                 </Select>
             </FormControl>
             <br />
-            <Button variant="outlined" onClick={() => {
+            <br/>
+            <Button variant="contained" onClick={() => {
                 addToList(seatNo, date, to);
             }}>Add</Button>
         </>)
@@ -115,11 +118,11 @@ export default function Seat({ data, user, date, getAddToList }) {
                 >
                     {!showSelectChair && (
                         <img
-                            src={getChair(status, allocatedTo, user?.team?.name)}
+                            src={getChair(status, allocatedTo?.team, user?.team?.name)}
                             className="img"
                         />
                     )}
-                    {showSelectChair && <img src={getChair('S')} className="img" />}
+                    {showSelectChair && <img src={getChair('')} className="img" />}
                 </div>
                 <p className="chair-seatno-p">{seatNo}</p>
             </div>

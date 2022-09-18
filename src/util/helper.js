@@ -2,6 +2,7 @@ export const urls = {
   chairs: {
     available: 'https://img.icons8.com/cotton/64/000000/accent-chair--v1.png',
     selected: 'https://img.icons8.com/cotton/64/000000/accent-chair--v2.png',
+   // selected: 'http://localhost:3000/res/selected.png',
     booked: 'https://img.icons8.com/cotton/64/000000/lawson-chair--v2.png',
     amended: 'https://img.icons8.com/color/48/000000/office-chair-2.png',
     disabled: 'https://img.icons8.com/pastel-glyph/64/000000/accent-chair--v1.png',
@@ -9,8 +10,9 @@ export const urls = {
   },
 };
 
-export const getChair = (status, a, b) => {
+export const getChair = (status, a=null, b) => {
   let chair = null;
+  console.log(a,b)
   switch (status) {
     case 'A':
       chair = urls.chairs.available;

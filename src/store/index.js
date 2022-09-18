@@ -22,6 +22,13 @@ class Store {
     value!=null && this.toBeAllocated.set(value.to.code, {code: value.to.code, seatNo: value.seatNo, date: value.date, name: value.to.name})
   }
 
+
+  setAllToBeAllocatedList = (data) =>{
+    data.map(({seatNo,date,to})=>{
+      this.toBeAllocated.set(to.code, {code: to?.code, seatNo, date, name: to?.person})
+    })
+  }
+
   gettoBeAllocated(){
     return Array.from(toJS(this.toBeAllocated), ([name, value]) => ({ name, value }));
   }

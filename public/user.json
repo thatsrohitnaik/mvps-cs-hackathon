@@ -13,7 +13,7 @@
     "strength": 10,
     "quota": 6,
     "members":[
-      {"name":"Rohit", "code":"M100101", "email": "xyz@cs.com", "email": "xyz@cs.com"},
+      {"name":"Rohit", "code":"M100101", "email": "xyz@cs.com"},
       {"name":"Chanchal", "code":"M100102", "email": "xyz@cs.com"},
       {"name":"Shashi", "code":"M100103", "email": "xyz@cs.com"},
       {"name":"Setia", "code":"M100104", "email": "xyz@cs.com"},

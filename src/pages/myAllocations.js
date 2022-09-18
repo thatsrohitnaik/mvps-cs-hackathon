@@ -48,7 +48,7 @@ export default function MyAllocation(props) {
 
                         {
                             props?.user?.buildingAccess.map((t, index) => {
-                                return <Tab label={t?.floor} {...a11yProps(index, 0)} />
+                                return <Tab key={index} label={t?.floor} {...a11yProps(index, 0)} />
                             })
                         }
 
@@ -57,30 +57,30 @@ export default function MyAllocation(props) {
 
                 {
                     props?.user?.buildingAccess.map((t, index) => {
-                        return (<TabPanel value={value} index1={index} index2={0} >
+                        return (<TabPanel key={index} value={value} index1={index} index2={0} >
                             <Box sx={{ width: '100%', padding: 0 }}>
                                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                     <Tabs value={value2} onChange={handleChange2} aria-label="basic tabs example">
                                         {
                                             t?.zone?.map((k, i = index) => {
-                                                return <Tab label={k} {...a11yProps(index, i + 1)} />
+                                                return <Tab key={i} label={k} {...a11yProps(index, i + 1)} />
                                             })
                                         }
                                     </Tabs>
                                 </Box>
-                                <TabPanel value={value2} index1={0} index2={index + 1}>
+                                <TabPanel key="1" value={value2} index1={0} index2={index + 1}>
                                     <br />
                                     <Hall floor={t.floor} zone="A" user={props?.user} getAddToList={getAddToList} />
                                 </TabPanel>
-                                <TabPanel value={value2} index1={1} index2={index + 1} >
+                                <TabPanel key="2" value={value2} index1={1} index2={index + 1} >
                                     <br />
                                     <Hall floor={t.floor} zone="B" user={props?.user} getAddToList={getAddToList} />
                                 </TabPanel>
-                                <TabPanel value={value2} index1={2} index2={index + 1}>
+                                <TabPanel key="3" value={value2} index1={2} index2={index + 1}>
                                     <br />
                                     <Hall floor={t.floor} zone="C" user={props?.user} getAddToList={getAddToList} />
                                 </TabPanel>
-                                <TabPanel value={value2} index1={3} index2={index + 1}>
+                                <TabPanel key="4" value={value2} index1={3} index2={index + 1}>
                                     <br />
                                     <Hall floor={t.floor} zone="D" user={props?.user} getAddToList={getAddToList} />
                                 </TabPanel>
@@ -90,11 +90,14 @@ export default function MyAllocation(props) {
                 }
             </Box>
             {list != null && list.map(a => {
+                console.log(a,"aaaa")
                 const m = a.value.seatNo +" : "+a.value.name;
-                return (<Chip label={m} sx={{m:1}}/>)
+                return (<Chip key={a.value.seatNo} label={m} sx={{m:1}}/>)
             })}
             <br/>
             <Button variant="contained" sx={{m:1}}>Allocate</Button>
+            <br/>
+            <p>Green : Booked For Your Team, Yellow: Booked Other Team, White: Available</p> 
         </>
     );
 }

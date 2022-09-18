@@ -1,16 +1,13 @@
 {
   "date": "17-09-2022",
   "office": "PN-E2",
-  "requestedTeam": "iCredit",
   "floor": "4",
   "wing": "A",
-  "wingCapacity": "35",
-  "availableSeats": "2",
   "seats": [
     {
       "seatNo": "4-A-1",
       "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "allocatedTo": {"team":"iCredit", "person":"Rohit", "code":"M100101", "email": "xyz@cs.com"},
       "amendRequestBy": null
     },
     {
@@ -22,12 +19,12 @@
     {
       "seatNo": "4-A-3",
       "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "allocatedTo": {"team":"iCredit", "person":"Chanchal", "code":"M100102", "email": "xyz@cs.com"},
       "amendRequestBy": null
     },
     {
       "seatNo": "4-A-4",
-      "status": "B",
+      "status": "A",
       "allocatedTo": null,
       "amendRequestBy": null
     },
@@ -40,14 +37,8 @@
     {
       "seatNo": "4-A-6",
       "status": "B",
-      "allocatedTo": {"team":"APAC", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "allocatedTo": {"team":"iCredit", "person":"Shashi", "code":"M100103", "email": "xyz@cs.com"},
       "amendRequestBy": "APAC"
-    },
-    {
-      "seatNo": "4-A-7",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
-      "amendRequestBy": null
     },
     {
       "seatNo": "4-A-8",
@@ -80,12 +71,6 @@
       "amendRequestBy": "APAC"
     },
     {
-      "seatNo": "4-A-13",
-      "status": "B",
-      "allocatedTo": {"team":"APAC", "person":"Methew Perry", "email":"methew.perry@cs.com"},
-      "amendRequestBy": null
-    },
-    {
       "seatNo": "4-A-14",
       "status": "A",
       "allocatedTo": null,
@@ -93,8 +78,8 @@
     },
     {
       "seatNo": "4-A-15",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": null
     },
     {
@@ -106,13 +91,13 @@
     {
       "seatNo": "4-A-17",
       "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "allocatedTo": {"team":"iCredit", "person":"Kushal", "code":"M100108", "email": "xyz@cs.com"},
       "amendRequestBy": "APAC"
     },
     {
       "seatNo": "4-A-18",
       "status": "B",
-      "allocatedTo": {"team":"APAC", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "allocatedTo": {"team":"APAC", "code":"A100110", "person":"Methew Perry", "email":"methew.perry@cs.com"},
       "amendRequestBy": "APAC"
     },
     {
@@ -124,19 +109,19 @@
     {
       "seatNo": "4-A-20",
       "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "allocatedTo": {"team":"iCredit", "person":"Sai", "code":"M100110", "email": "xyz@cs.com"},
       "amendRequestBy": null
     },
     {
       "seatNo": "4-A-21",
       "status": "B",
-      "allocatedTo": {"team":"APAC", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "allocatedTo": {"team":"APAC", "person":"Aishwarya", "email":"methew.perry@cs.com"},
       "amendRequestBy": null
     },
     {
       "seatNo": "4-A-22",
       "status": "B",
-      "allocatedTo": {"team":"APAC", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "allocatedTo": {"team":"iCredit", "person":"Vaishanvi", "code":"M100105", "email": "xyz@cs.com"},
       "amendRequestBy": null
     },
     {
@@ -147,14 +132,14 @@
     },
     {
       "seatNo": "4-A-24",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": "APAC"
     },
     {
       "seatNo": "4-A-25",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": null
     },
     {
@@ -166,37 +151,37 @@
     {
       "seatNo": "4-A-27",
       "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "allocatedTo": {"team":"iCredit", "person":"Srinidhi", "code":"M100107", "email": "xyz@cs.com"},
       "amendRequestBy": null
     },
     {
       "seatNo": "4-A-28",
       "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "allocatedTo": {"team":"iCredit", "person":"Malini", "code":"M100109", "email": "xyz@cs.com"},
       "amendRequestBy": null
     },
     {
       "seatNo": "4-A-29",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": "APAC"
     },
     {
       "seatNo": "4-A-30",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": "APAC"
     },
     {
       "seatNo": "4-A-31",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": null
     },
     {
       "seatNo": "4-A-32",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": null
     },
     {
@@ -207,20 +192,20 @@
     },
     {
       "seatNo": "4-A-34",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": null
     },
     {
       "seatNo": "4-A-35",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": "APAC"
     },
     {
       "seatNo": "4-A-36",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": "APAC"
     }
   ]

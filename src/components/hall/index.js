@@ -6,7 +6,7 @@ export default function Hall({ floor, zone, user, getAddToList }) {
     const { store } = React.useContext(StoreContext);
     const [seatData, setSeatData] = React.useState([]);
 
-    const getAddToList2 = (list) =>{
+    const getAddToList2 = (list) => {
         console.log(list)
         list != null && store.setToBeAllocatedList(list[0])
         getAddToList(store.gettoBeAllocated())
@@ -16,18 +16,34 @@ export default function Hall({ floor, zone, user, getAddToList }) {
         abc();
     }, [])
 
+    const filterYourSeats = (a) => {
+        const ar = [];
+        a.seats.map(i => {
+            console.log(i?.allocatedTo?.team, user?.team?.name )
+            if (i?.allocatedTo?.team == user?.team?.name) {
+                ar.push({ seatNo: i.seatNo, date: seatData.date, to: i.allocatedTo })
+            }
+        })
+
+        store.setAllToBeAllocatedList(ar)
+        console.log(ar)
+        getAddToList(store.gettoBeAllocated())
+    }
+
     const abc = async () => {
         const a = await store.getSpaceAllocationData();
-        console.log(a,"aaa")
+        console.log(a, "aaa")
+        filterYourSeats(a)
         setSeatData(a);
     };
+
     if (seatData.length == 0) {
         return null;
     }
     return (
         <div className='row'>
             {seatData.seats.map((i) => {
-                return <Seat key={i.seatNo} getAddToList={getAddToList2} data={i} date={seatData.date} floor={floor} zone={zone} user={user}/>
+                return <Seat key={i.seatNo} getAddToList={getAddToList2} data={i} date={seatData.date} floor={floor} zone={zone} user={user} />
             })}
         </div>)
 }
