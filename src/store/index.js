@@ -6,6 +6,7 @@ class Store {
   loading = false;
   user = null;
   toBeAllocated = new Map();
+  data = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -45,7 +46,7 @@ return this.toBeAllocated.size;
 
   getSpaceAllocationData = async () => {
     const response = await get(api.getWingAllocation);
-    console.log(response.data,"ss")
+    this.data = response.data;
     return response.data;
   };
 }

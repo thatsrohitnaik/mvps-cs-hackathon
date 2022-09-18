@@ -9,9 +9,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
 import { StoreContext } from '../../../context/index';
 
 const style = {
@@ -26,7 +23,7 @@ const style = {
     p: 4,
 };
 
-export default function Seat({ data, user, date, getAddToList, floor, zone, endex }) {
+export default function Seat({ data, user, date, getAddToList, floor, zone, endex, handleClickSnackNew }) {
     const { seatNo, status, allocatedTo, amendRequestBy } = data;
     const { store } = React.useContext(StoreContext);
     const gridSize = window.innerWidth > 800 ? 'col-1 ' : 'col-3';
@@ -38,49 +35,26 @@ export default function Seat({ data, user, date, getAddToList, floor, zone, ende
     const [addedToAllocationList, setaddedToAllocationList] = React.useState([]);
     const [to, setTo] = React.useState('');
 
-    const [openSnack, setOpenSnack] = React.useState(false);
+    const newSeat = floor + "-" + zone + "-" + (endex+1);
 
-    const handleClickSnack = () => {
-        setOpenSnack(true);
-    };
-
-    const handleCloseSnack = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setOpen(false);
-    };
-
-    const newSeat = floor + "-" + zone + "-" + endex;
-
-
-    const handleChange = (event) => {
-        setTo(event.target.value);
-    };
+    const handleChange = (event) => { setTo(event.target.value);};
 
     const addToList = (seatNo, date, to) => {
         const a = addedToAllocationList;
         a.push({ seatNo: newSeat, date, to })
         setaddedToAllocationList(a);
         getAddToList(addedToAllocationList)
+        setShowSelectChair(true);
     }
 
-    const removeFromToAllocationList = () => {
-
-    }
+    const removeFromToAllocationList = () => {}
 
     const uponSeatClick = () => {
-        if (user.team.quota <= store.getAllocatesSize()) {
+        if (user.team.quota <= store.getAllocatesSize() && status =="A") {
+            handleClickSnackNew();
             return null;
         }
-        const available = checkIfSeatIsAvailable(status);
-        if (!available) {
-            handleOpen();
-        } else {
-            setShowSelectChair(true);
-            handleOpen();
-        }
+        handleOpen();
     };
 
     const checkIfSeatIsAvailable = (status) => {
@@ -102,31 +76,9 @@ export default function Seat({ data, user, date, getAddToList, floor, zone, ende
         </>)
     }
 
-    const action = (
-        <React.Fragment>
-            <Button color="secondary" size="small" onClick={handleCloseSnack}>
-                UNDO
-            </Button>
-            <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={handleCloseSnack}
-            >
-                <CloseIcon fontSize="small" />
-            </IconButton>
-        </React.Fragment>
-    );
     const allocate = () => {
 
         return (<>
-            <Snackbar
-                open={openSnack}
-                autoHideDuration={6000}
-                onClose={handleCloseSnack}
-                message="Note archived"
-                action={action}
-            />
             <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Allocate To</InputLabel>
                 <Select

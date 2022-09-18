@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import TabPanel from '../components/TabPanel/';
 import Hall from '../components/Hall/';
+import './style.css';
+import { getChair } from '../util/helper';
 
 function a11yProps(index1, index2) {
     return {
@@ -90,14 +92,17 @@ export default function MyAllocation(props) {
                 }
             </Box>
             {list != null && list.map(a => {
-                console.log(a,"aaaa")
-                const m = a.value.seatNo +" : "+a.value.name;
-                return (<Chip key={a.value.seatNo} label={m} sx={{m:1}}/>)
+                console.log(a, "aaaa")
+                const m = a.value.seatNo + " : " + a.value.name;
+                return (<Chip key={a.value.seatNo} label={m} sx={{ m: 1 }} />)
             })}
-            <br/>
-            <Button variant="contained" sx={{m:1}}>Allocate</Button>
-            <br/>
-            <p>Green : Booked For Your Team, Yellow: Booked Other Team, White: Available</p> 
+            <br />
+            <div>
+                <Button variant="contained" sx={{ m: 1 }}>Allocate</Button>
+                <br/>
+                <br/>
+                <p><img src={getChair('A')} className="img-icon" />  Available  <img src={getChair('S')} className="img-icon" /> Your Team  <img src={getChair('B','A','C')} className="img-icon" /> Other Team</p>
+            </div>
         </>
     );
 }
