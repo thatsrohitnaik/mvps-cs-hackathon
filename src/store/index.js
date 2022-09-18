@@ -1,10 +1,11 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, toJS } from 'mobx';
 import { get } from '../util/rest';
 import { api } from '../util/api';
 
 class Store {
   loading = false;
   user = null;
+  toBeAllocated = new Map();
 
   constructor() {
     makeAutoObservable(this);
@@ -16,6 +17,14 @@ class Store {
     this.user = response.data;
     return response.data;
   };
+
+  setToBeAllocatedList = (value) =>{
+    value!=null && this.toBeAllocated.set(value.to.code, {code: value.to.code, seatNo: value.seatNo, date: value.date, name: value.to.name})
+  }
+
+  gettoBeAllocated(){
+    return Array.from(toJS(this.toBeAllocated), ([name, value]) => ({ name, value }));
+  }
 
   getBuildingPlan = async () => {
     const response = await get(api.getProfile);

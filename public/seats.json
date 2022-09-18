@@ -21,7 +21,7 @@
     },
     {
       "seatNo": "4-A-3",
-      "status": "A",
+      "status": "B",
       "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
       "amendRequestBy": null
     },
@@ -57,7 +57,7 @@
     },
     {
       "seatNo": "4-A-9",
-      "status": "A",
+      "status": "B",
       "allocatedTo": {"team":"APAC", "person":"Methew Perry", "email":"methew.perry@cs.com"},
       "amendRequestBy": null
     },
@@ -93,7 +93,7 @@
     },
     {
       "seatNo": "4-A-15",
-      "status": "A",
+      "status": "B",
       "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
       "amendRequestBy": null
     },
@@ -129,7 +129,7 @@
     },
     {
       "seatNo": "4-A-21",
-      "status": "A",
+      "status": "B",
       "allocatedTo": {"team":"APAC", "person":"Methew Perry", "email":"methew.perry@cs.com"},
       "amendRequestBy": null
     },
@@ -165,7 +165,7 @@
     },
     {
       "seatNo": "4-A-27",
-      "status": "A",
+      "status": "B",
       "allocatedTo": {"team":"iCredit", "person":"Methew Perry", "email":"methew.perry@cs.com"},
       "amendRequestBy": null
     },

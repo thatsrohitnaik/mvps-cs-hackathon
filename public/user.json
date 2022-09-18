@@ -13,15 +13,15 @@
     "strength": 10,
     "quota": 6,
     "members":[
-      {"name":"Rohit", "code":"M100101"},
-      {"name":"Chanchal", "code":"M100102"},
-      {"name":"Shashi", "code":"M100103"},
-      {"name":"Setia", "code":"M100104"},
-      {"name":"Vaishanvi", "code":"M100105"},
-      {"name":"Praveen", "code":"M100106"},
-      {"name":"Srinidhi", "code":"M100107"},
-      {"name":"Kushal", "code":"M100108"},
-      {"name":"Malini", "code":"M100109"},
+      {"name":"Rohit", "code":"M100101", "email": "xyz@cs.com", "email": "xyz@cs.com"},
+      {"name":"Chanchal", "code":"M100102", "email": "xyz@cs.com"},
+      {"name":"Shashi", "code":"M100103", "email": "xyz@cs.com"},
+      {"name":"Setia", "code":"M100104", "email": "xyz@cs.com"},
+      {"name":"Vaishanvi", "code":"M100105", "email": "xyz@cs.com"},
+      {"name":"Praveen", "code":"M100106", "email": "xyz@cs.com"},
+      {"name":"Srinidhi", "code":"M100107", "email": "xyz@cs.com"},
+      {"name":"Kushal", "code":"M100108", "email": "xyz@cs.com"},
+      {"name":"Malini", "code":"M100109", "email": "xyz@cs.com"},
       {"name":"Sai", "code":"M100110"}
     ]
   }

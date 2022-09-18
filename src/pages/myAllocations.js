@@ -2,6 +2,8 @@ import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
 import TabPanel from '../components/TabPanel/';
 import Hall from '../components/Hall/';
 
@@ -16,8 +18,11 @@ export default function MyAllocation(props) {
     const [value, setValue] = React.useState(0);
     const [value2, setValue2] = React.useState(0);
     const [value3, setValue3] = React.useState(0);
+    const [list, setList] = React.useState([]);
 
-    console.log(props?.user?.buildingAccess, "rr")
+    const getAddToList = (list) => {
+        setList(list)
+    }
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -36,48 +41,60 @@ export default function MyAllocation(props) {
     }
 
     return (
-        <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+        <>
+            <Box sx={{ width: '100%' }}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
 
-                    {
-                        props?.user?.buildingAccess.map((t, index) => {
-                            return <Tab label={t?.floor} {...a11yProps(index, 0)} />
-                        })
-                    }
+                        {
+                            props?.user?.buildingAccess.map((t, index) => {
+                                return <Tab label={t?.floor} {...a11yProps(index, 0)} />
+                            })
+                        }
 
-                </Tabs>
-            </Box>
+                    </Tabs>
+                </Box>
 
-            {
-                props?.user?.buildingAccess.map((t, index) => {
-                    return (<TabPanel value={value} index1={index} index2={0} >
-                        <Box sx={{ width: '100%', padding: 0 }}>
-                            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                                <Tabs value={value2} onChange={handleChange2} aria-label="basic tabs example">
-                                    {
-                                        t?.zone?.map((k, i = index) => {
-                                            return <Tab label={k} {...a11yProps(index, i + 1)} />
-                                        })
-                                    }
-                                </Tabs>
+                {
+                    props?.user?.buildingAccess.map((t, index) => {
+                        return (<TabPanel value={value} index1={index} index2={0} >
+                            <Box sx={{ width: '100%', padding: 0 }}>
+                                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                    <Tabs value={value2} onChange={handleChange2} aria-label="basic tabs example">
+                                        {
+                                            t?.zone?.map((k, i = index) => {
+                                                return <Tab label={k} {...a11yProps(index, i + 1)} />
+                                            })
+                                        }
+                                    </Tabs>
+                                </Box>
+                                <TabPanel value={value2} index1={0} index2={index + 1}>
+                                    <br />
+                                    <Hall floor={t.floor} zone="A" user={props?.user} getAddToList={getAddToList} />
+                                </TabPanel>
+                                <TabPanel value={value2} index1={1} index2={index + 1} >
+                                    <br />
+                                    <Hall floor={t.floor} zone="B" user={props?.user} getAddToList={getAddToList} />
+                                </TabPanel>
+                                <TabPanel value={value2} index1={2} index2={index + 1}>
+                                    <br />
+                                    <Hall floor={t.floor} zone="C" user={props?.user} getAddToList={getAddToList} />
+                                </TabPanel>
+                                <TabPanel value={value2} index1={3} index2={index + 1}>
+                                    <br />
+                                    <Hall floor={t.floor} zone="D" user={props?.user} getAddToList={getAddToList} />
+                                </TabPanel>
                             </Box>
-                            <TabPanel value={value2} index1={0} index2={index + 1}>
-                                <Hall floor={t.floor} zone="A" user={props?.user}/>
-                            </TabPanel>
-                            <TabPanel value={value2} index1={1} index2={index + 1}>
-                                <Hall floor={t.floor} zone="B" user={props?.user}/>
-                            </TabPanel>
-                            <TabPanel value={value2} index1={2} index2={index + 1}>
-                                <Hall floor={t.floor} zone="C" user={props?.user}/>
-                            </TabPanel>
-                            <TabPanel value={value2} index1={3} index2={index + 1}>
-                                <Hall floor={t.floor} zone="D" user={props?.user}/>
-                            </TabPanel>
-                        </Box>
-                    </TabPanel>)
-                })
-            }
-        </Box>
+                        </TabPanel>)
+                    })
+                }
+            </Box>
+            {list != null && list.map(a => {
+                const m = a.value.seatNo +" : "+a.value.name;
+                return (<Chip label={m} sx={{m:1}}/>)
+            })}
+            <br/>
+            <Button variant="contained" sx={{m:1}}>Allocate</Button>
+        </>
     );
 }
