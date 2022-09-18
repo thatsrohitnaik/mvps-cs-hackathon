@@ -7,13 +7,13 @@
         "seats": [
           {
             "seatNo": "4-A-1",
-            "status": "A",
-            "allocatedTo": null
+            "status": "B",
+            "allocatedTo":{"name":"Rohit", "code":"M100101", "email": "xyz@cs.com", "team":"iCredit"}
           },
           {
             "seatNo": "4-A-2",
-            "status": "A",
-            "allocatedTo": null
+            "status": "B",
+            "allocatedTo":{"name":"Aishwarya", "code":"Y100101", "email": "xyz@cs.com", "team":"APAC"}
           },
           {
             "seatNo": "4-A-3",
@@ -112,66 +112,6 @@
           },
           {
             "seatNo": "4-A-24",
-            "status": "A",
-            "allocatedTo": null
-          },
-          {
-            "seatNo": "4-A-25",
-            "status": "A",
-            "allocatedTo": null
-          },
-          {
-            "seatNo": "4-A-26",
-            "status": "A",
-            "allocatedTo": null
-          },
-          {
-            "seatNo": "4-A-27",
-            "status": "A",
-            "allocatedTo": null
-          },
-          {
-            "seatNo": "4-A-28",
-            "status": "A",
-            "allocatedTo": null
-          },
-          {
-            "seatNo": "4-A-29",
-            "status": "A",
-            "allocatedTo": null
-          },
-          {
-            "seatNo": "4-A-30",
-            "status": "A",
-            "allocatedTo": null
-          },
-          {
-            "seatNo": "4-A-31",
-            "status": "A",
-            "allocatedTo": null
-          },
-          {
-            "seatNo": "4-A-32",
-            "status": "A",
-            "allocatedTo": null
-          },
-          {
-            "seatNo": "4-A-33",
-            "status": "A",
-            "allocatedTo": null
-          },
-          {
-            "seatNo": "4-A-34",
-            "status": "A",
-            "allocatedTo": null
-          },
-          {
-            "seatNo": "4-A-35",
-            "status": "A",
-            "allocatedTo": null
-          },
-          {
-            "seatNo": "4-A-36",
             "status": "A",
             "allocatedTo": null
           }

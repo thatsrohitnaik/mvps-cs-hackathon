@@ -11,18 +11,18 @@
   "team": {
     "name": "iCredit",
     "strength": 10,
-    "quota": 2,
+    "quota": 5,
     "members":[
-      {"name":"Rohit", "code":"M100101", "email": "xyz@cs.com"},
-      {"name":"Chanchal", "code":"M100102", "email": "xyz@cs.com"},
-      {"name":"Shashi", "code":"M100103", "email": "xyz@cs.com"},
-      {"name":"Setia", "code":"M100104", "email": "xyz@cs.com"},
-      {"name":"Vaishanvi", "code":"M100105", "email": "xyz@cs.com"},
-      {"name":"Praveen", "code":"M100106", "email": "xyz@cs.com"},
-      {"name":"Srinidhi", "code":"M100107", "email": "xyz@cs.com"},
-      {"name":"Kushal", "code":"M100108", "email": "xyz@cs.com"},
-      {"name":"Malini", "code":"M100109", "email": "xyz@cs.com"},
-      {"name":"Sai", "code":"M100110"}
+      {"name":"Rohit", "code":"M100101", "email": "xyz@cs.com", "team":"iCredit"},
+      {"name":"Chanchal", "code":"M100102", "email": "xyz@cs.com", "team":"iCredit"},
+      {"name":"Shashi", "code":"M100103", "email": "xyz@cs.com", "team":"iCredit"},
+      {"name":"Setia", "code":"M100104", "email": "xyz@cs.com", "team":"iCredit"},
+      {"name":"Vaishanvi", "code":"M100105", "email": "xyz@cs.com", "team":"iCredit"},
+      {"name":"Praveen", "code":"M100106", "email": "xyz@cs.com", "team":"iCredit"},
+      {"name":"Srinidhi", "code":"M100107", "email": "xyz@cs.com", "team":"iCredit"},
+      {"name":"Kushal", "code":"M100108", "email": "xyz@cs.com", "team":"iCredit"},
+      {"name":"Malini", "code":"M100109", "email": "xyz@cs.com", "team":"iCredit"},
+      {"name":"Sai", "code":"M100110",  "email": "xyz@cs.com", "team":"iCredit"}
     ]
   }
 }

@@ -35,13 +35,15 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import {toJS} from 'mobx';
 
 const drawerWidth = 240;
 
 
 export default function App(props) {
   const [value, setValue] = React.useState(dayjs('2014-08-18T21:11:54'));
-  const [office, setOffice] = React.useState('PN-E2');
+  const [office, setOffice] = React.useState('PN');
+  const [build, setBuild] = React.useState('PN-E2');
 
   const handleChangeOffice = (event) => {
     setOffice(event.target.value);
@@ -55,6 +57,8 @@ export default function App(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [user, setUser] = React.useState(null);
   const { store } = React.useContext(StoreContext);
+
+  const building = toJS(store.building);
 
   const handleChange = (newValue) => {
     setValue(newValue);
@@ -74,8 +78,8 @@ export default function App(props) {
       <Divider />
       <br />
       <List>
-        <ListItem>   <FormControl sx={{ m: 0, width: '100%' }} size="small">
-          <InputLabel id="demo-select-small">Office</InputLabel>
+      <ListItem>   <FormControl sx={{ m: 0, width: '100%' }} size="small">
+          <InputLabel id="demo-select-small">Location</InputLabel>
           <Select
             labelId="demo-select-small"
             id="demo-select-small"
@@ -83,11 +87,25 @@ export default function App(props) {
             label="office"
             onChange={handleChangeOffice}
           >
-            <MenuItem value="PN-E2">Pune Eon 2</MenuItem>
-            <MenuItem disabled value="PN-E1">Pune Eon 1</MenuItem>
-            <MenuItem disabled value="ZU-A1">Zuric A</MenuItem>
+            <MenuItem value="PN">Pune</MenuItem>
+            <MenuItem disabled value="MB">Mumbai</MenuItem>
           </Select>
-        </FormControl>  <br/><br/>   </ListItem>
+        </FormControl>
+        </ListItem>
+
+        <ListItem>   <FormControl sx={{ m: 0, width: '100%' }} size="small">
+          <InputLabel id="building">Building</InputLabel>
+          <Select
+            labelId="building"
+            id="building"
+            value={build}
+            label="office"
+            onChange={handleChangeOffice}>
+            <MenuItem value="PN-E2">Eon 2</MenuItem>
+            <MenuItem disabled value="PN-E1">Eon 1</MenuItem>
+          </Select>
+        </FormControl>
+        </ListItem>
 
 
         <ListItem>
@@ -203,7 +221,7 @@ export default function App(props) {
           <Toolbar />
           <Routes>
             <Route exact path="/" element={<MyHome />} />
-            <Route exact path="/allocation" element={<MyAllocation user={user} />} />
+            <Route exact path="/allocation" element={<MyAllocation building={building} user={user} />} />
             <Route exact path="/approval" element={<MyApproval />} />
             <Route exact path="/quota" element={<MyQuota />} />
             <Route exact path="/team" element={<MyTeam />} />

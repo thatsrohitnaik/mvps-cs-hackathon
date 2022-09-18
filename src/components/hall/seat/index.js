@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
+import {toJS} from 'mobx'
 import { StoreContext } from '../../../context/index';
 
 const style = {
@@ -34,50 +35,30 @@ export default function Seat({ data, user, date, getAddToList, floor, zone, ende
     const [toBeAllocateList, settoBeAllocateList] = React.useState(user.team.members);
     const [addedToAllocationList, setaddedToAllocationList] = React.useState([]);
     const [to, setTo] = React.useState('');
-
-    const newSeat = floor + "-" + zone + "-" + (endex+1);
-
     const handleChange = (event) => { setTo(event.target.value);};
+    const hasTobeAlloted = toJS(store.hasTobeAlloted);
 
     const addToList = (seatNo, date, to) => {
         const a = addedToAllocationList;
-        a.push({ seatNo: newSeat, date, to })
+        a.push({ seatNo, date, to })
         setaddedToAllocationList(a);
         getAddToList(addedToAllocationList)
         setShowSelectChair(true);
+        store.setSeat(floor, zone, seatNo, "S", to);
     }
 
-    const removeFromToAllocationList = () => {}
-
-    const uponSeatClick = () => {
-        if (user.team.quota <= store.getAllocatesSize() && status =="A") {
-            handleClickSnackNew();
-            return null;
-        }
-        handleOpen();
-    };
-
-    const checkIfSeatIsAvailable = (status) => {
-        // console.log(user.team.quota, store.getAllocatesSize(), "heyyyyyy")
-        return status == 'A';
-    };
+    const uponSeatClick = () => { if (user.team.quota <= store.getAllocatesSize() && status == "A") { handleClickSnackNew(); return null; } handleOpen(); };
 
     const showAllocation = () => {
 
         return (<>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Allocated to {allocatedTo?.person} from {allocatedTo?.team}
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Contact email {allocatedTo?.email}
-            </Typography>
-            <br />
-            {allocatedTo?.team != user?.team?.name && <Button variant="contained">Request Reallocation</Button>}
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}> Allocated to {allocatedTo?.person} from {allocatedTo?.team} </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}> Contact email {allocatedTo?.email} </Typography>
+            <br /> { allocatedTo?.team != user?.team?.name && <Button variant="contained">Request Reallocation</Button>}
         </>)
     }
 
     const allocate = () => {
-
         return (<>
             <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Allocate To</InputLabel>
@@ -86,55 +67,33 @@ export default function Seat({ data, user, date, getAddToList, floor, zone, ende
                     id="demo-simple-select"
                     value={to}
                     label="Allocate To"
-                    onChange={handleChange}
-                >
-                    {
-                        toBeAllocateList.map((t, index) => {
-                            return <MenuItem key={index} value={t}>{t.name}</MenuItem>
-                        })
-                    }
+                    onChange={handleChange}>
+                    {hasTobeAlloted.map((t, index) => { return <MenuItem key={index} value={t}>{t.name}</MenuItem> })}
                 </Select>
             </FormControl>
             <br />
             <br />
-            <Button variant="contained" onClick={() => {
-                addToList(seatNo, date, to);
-            }}>Add</Button>
+            <Button variant="contained" onClick={() => { addToList(seatNo, date, to); }}>Add</Button>
         </>)
     }
 
     return (
         <>
             <div className={gridSize} key={seatNo}>
-                <div
-                    className="chair-img-div "
-                    onClick={() => {
-                        uponSeatClick();
-                    }}
-                >
-                    {!showSelectChair && (
-                        <img
-                            src={getChair(status, allocatedTo?.team, user?.team?.name)}
-                            className="img"
-                        />
-                    )}
+                <div className="chair-img-div " onClick={() => { uponSeatClick(); }} >
+                    {!showSelectChair && <img src={getChair(status, allocatedTo?.team, user?.team?.name)} className="img" />}
                     {showSelectChair && <img src={getChair('S')} className="img" />}
                 </div>
-                <p className="chair-seatno-p">{newSeat}</p>
+                <p className="chair-seatno-p">{seatNo}</p>
             </div>
             <Modal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
+                aria-describedby="modal-modal-description">
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Seat : {newSeat}
-                    </Typography>
-                    {allocatedTo != null && showAllocation()}
-                    <br />
-                    {allocatedTo == null && allocate()}
+                    <Typography id="modal-modal-title" variant="h6" component="h2"> Seat : {seatNo} </Typography>
+                    {allocatedTo != null && showAllocation()} <br /> {allocatedTo == null && allocate()}
                 </Box>
             </Modal>
         </>
