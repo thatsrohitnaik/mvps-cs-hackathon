@@ -21,7 +21,7 @@ export default function MyAllocation(props) {
     const [list, setList] = React.useState([]);
 
     const getAddToList = (list) => {
-        setList(list)
+        setList(list);
     }
 
     const handleChange = (event, newValue) => {

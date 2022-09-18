@@ -49,7 +49,7 @@ export default function App(props) {
   React.useEffect(() => {
     abc()
   }, []);
-  const isMobile = window.innerWidth > 600 ? true : false;
+  const isMobile = window.innerWidth > 800 ? true : false;
 
   const { windowP } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);

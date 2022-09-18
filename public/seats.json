@@ -3,11 +3,13 @@
   "office": "PN-E2",
   "floor": "4",
   "wing": "A",
+  "wingCapacity": "35",
+  "availableSeats": "2",
   "seats": [
     {
       "seatNo": "4-A-1",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Rohit", "code":"M100101", "email": "xyz@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": null
     },
     {
@@ -18,8 +20,8 @@
     },
     {
       "seatNo": "4-A-3",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Chanchal", "code":"M100102", "email": "xyz@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": null
     },
     {
@@ -36,8 +38,8 @@
     },
     {
       "seatNo": "4-A-6",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Shashi", "code":"M100103", "email": "xyz@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": "APAC"
     },
     {
@@ -90,9 +92,9 @@
     },
     {
       "seatNo": "4-A-17",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Kushal", "code":"M100108", "email": "xyz@cs.com"},
-      "amendRequestBy": "APAC"
+      "status": "A",
+      "allocatedTo": null,
+      "amendRequestBy": null
     },
     {
       "seatNo": "4-A-18",
@@ -109,7 +111,7 @@
     {
       "seatNo": "4-A-20",
       "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Sai", "code":"M100110", "email": "xyz@cs.com"},
+      "allocatedTo": null,
       "amendRequestBy": null
     },
     {
@@ -120,8 +122,8 @@
     },
     {
       "seatNo": "4-A-22",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Vaishanvi", "code":"M100105", "email": "xyz@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": null
     },
     {
@@ -150,14 +152,14 @@
     },
     {
       "seatNo": "4-A-27",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Srinidhi", "code":"M100107", "email": "xyz@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": null
     },
     {
       "seatNo": "4-A-28",
-      "status": "B",
-      "allocatedTo": {"team":"iCredit", "person":"Malini", "code":"M100109", "email": "xyz@cs.com"},
+      "status": "A",
+      "allocatedTo": null,
       "amendRequestBy": null
     },
     {

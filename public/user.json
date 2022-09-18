@@ -2,11 +2,11 @@
   "type": "manager",
   "buildingAccess":[{
     "floor":"L4",
-    "zone":["A","B"]
+    "zone":["A","B","C","D"]
   },
   {
     "floor":"L5",
-    "zone":["A","B","C"]
+    "zone":["A","B","C","D"]
   }],
   "team": {
     "name": "iCredit",

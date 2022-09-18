@@ -29,6 +29,10 @@ class Store {
     })
   }
 
+  getAllocatesSize = ()=>{
+return this.toBeAllocated.size;
+  }
+
   gettoBeAllocated(){
     return Array.from(toJS(this.toBeAllocated), ([name, value]) => ({ name, value }));
   }

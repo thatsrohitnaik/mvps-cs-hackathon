@@ -5,6 +5,7 @@ import { StoreContext } from '../../context/index';
 export default function Hall({ floor, zone, user, getAddToList }) {
     const { store } = React.useContext(StoreContext);
     const [seatData, setSeatData] = React.useState([]);
+    const [alreadyAllocated, setalreadyAllocated] = React.useState([]);
 
     const getAddToList2 = (list) => {
         console.log(list)
@@ -26,7 +27,10 @@ export default function Hall({ floor, zone, user, getAddToList }) {
         })
 
         store.setAllToBeAllocatedList(ar)
-        console.log(ar)
+        const codes = ar.map(c=>{
+            return c.code;
+        })
+        setalreadyAllocated(codes)
         getAddToList(store.gettoBeAllocated())
     }
 
@@ -42,8 +46,8 @@ export default function Hall({ floor, zone, user, getAddToList }) {
     }
     return (
         <div className='row'>
-            {seatData.seats.map((i) => {
-                return <Seat key={i.seatNo} getAddToList={getAddToList2} data={i} date={seatData.date} floor={floor} zone={zone} user={user} />
+            {seatData.seats.map((i,index) => {
+                return <Seat key={i.seatNo} endex={index} alreadyAllocated={alreadyAllocated} getAddToList={getAddToList2} data={i} date={seatData.date} floor={floor} zone={zone} user={user} />
             })}
         </div>)
 }

@@ -9,6 +9,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import { StoreContext } from '../../../context/index';
 
 const style = {
     position: 'absolute',
@@ -22,9 +26,10 @@ const style = {
     p: 4,
 };
 
-export default function Seat({ data, user, date, getAddToList }) {
+export default function Seat({ data, user, date, getAddToList, floor, zone, endex }) {
     const { seatNo, status, allocatedTo, amendRequestBy } = data;
-    const gridSize = window.innerWidth > 600 ? 'col-1 ' : 'col-3';
+    const { store } = React.useContext(StoreContext);
+    const gridSize = window.innerWidth > 800 ? 'col-1 ' : 'col-3';
     const [showSelectChair, setShowSelectChair] = useState(false);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -33,13 +38,30 @@ export default function Seat({ data, user, date, getAddToList }) {
     const [addedToAllocationList, setaddedToAllocationList] = React.useState([]);
     const [to, setTo] = React.useState('');
 
+    const [openSnack, setOpenSnack] = React.useState(false);
+
+    const handleClickSnack = () => {
+        setOpenSnack(true);
+    };
+
+    const handleCloseSnack = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+
+    const newSeat = floor + "-" + zone + "-" + endex;
+
+
     const handleChange = (event) => {
         setTo(event.target.value);
     };
 
     const addToList = (seatNo, date, to) => {
         const a = addedToAllocationList;
-        a.push({ seatNo, date, to  })
+        a.push({ seatNo: newSeat, date, to })
         setaddedToAllocationList(a);
         getAddToList(addedToAllocationList)
     }
@@ -49,8 +71,7 @@ export default function Seat({ data, user, date, getAddToList }) {
     }
 
     const uponSeatClick = () => {
-        if (showSelectChair) {
-            setShowSelectChair(false);
+        if (user.team.quota <= store.getAllocatesSize()) {
             return null;
         }
         const available = checkIfSeatIsAvailable(status);
@@ -63,6 +84,7 @@ export default function Seat({ data, user, date, getAddToList }) {
     };
 
     const checkIfSeatIsAvailable = (status) => {
+        // console.log(user.team.quota, store.getAllocatesSize(), "heyyyyyy")
         return status == 'A';
     };
 
@@ -75,14 +97,36 @@ export default function Seat({ data, user, date, getAddToList }) {
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 Contact email {allocatedTo?.email}
             </Typography>
-            <br/>
+            <br />
             {allocatedTo?.team != user?.team?.name && <Button variant="contained">Request Reallocation</Button>}
         </>)
     }
 
+    const action = (
+        <React.Fragment>
+            <Button color="secondary" size="small" onClick={handleCloseSnack}>
+                UNDO
+            </Button>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleCloseSnack}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </React.Fragment>
+    );
     const allocate = () => {
 
         return (<>
+            <Snackbar
+                open={openSnack}
+                autoHideDuration={6000}
+                onClose={handleCloseSnack}
+                message="Note archived"
+                action={action}
+            />
             <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Allocate To</InputLabel>
                 <Select
@@ -93,14 +137,14 @@ export default function Seat({ data, user, date, getAddToList }) {
                     onChange={handleChange}
                 >
                     {
-                        toBeAllocateList.map((t) => {
-                            return <MenuItem value={t}>{t.name}</MenuItem>
+                        toBeAllocateList.map((t, index) => {
+                            return <MenuItem key={index} value={t}>{t.name}</MenuItem>
                         })
                     }
                 </Select>
             </FormControl>
             <br />
-            <br/>
+            <br />
             <Button variant="contained" onClick={() => {
                 addToList(seatNo, date, to);
             }}>Add</Button>
@@ -122,9 +166,9 @@ export default function Seat({ data, user, date, getAddToList }) {
                             className="img"
                         />
                     )}
-                    {showSelectChair && <img src={getChair('')} className="img" />}
+                    {showSelectChair && <img src={getChair('S')} className="img" />}
                 </div>
-                <p className="chair-seatno-p">{seatNo}</p>
+                <p className="chair-seatno-p">{newSeat}</p>
             </div>
             <Modal
                 open={open}
@@ -134,7 +178,7 @@ export default function Seat({ data, user, date, getAddToList }) {
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Seat : {seatNo}
+                        Seat : {newSeat}
                     </Typography>
                     {allocatedTo != null && showAllocation()}
                     <br />
